@@ -74,4 +74,59 @@ router.post(
   }
 );
 
+router.get("/all", requireRoles(["admin"]), (req, res) => {
+  connection.query(
+    `
+      SELECT user.*, akses_user.role FROM user LEFT JOIN akses_user ON akses_user.id_user = user.id_user;
+    `,
+    (err, rows, fields) => {
+      if (err) return res.status(500).json({ error: err });
+      res.status(200).json(rows);
+    }
+  );
+});
+
+router.put(
+  "/:id_user",
+  requireRoles(["admin"]),
+  requireRoles(["username", "password", "role"]),
+  (req, res) => {
+    connection.beginTransaction((err) => {
+      if (err)
+        return connection.rollback(() => res.status(500).json({ error: err }));
+
+      connection.query(
+        `UPDATE user SET username = ?, password = ? WHERE id_user = ?`,
+        [req.body.username, req.body.password, req.params.id_user],
+        (err, rows, fields) => {
+          if (err)
+            return connection.rollback(() =>
+              res.status(500).json({ error: err })
+            );
+
+          connection.query(
+            `UPDATE akses_user SET role = ? WHERE id_user = ?`,
+            [req.body.role, req.params.id_user],
+            (err, rows, fields) => {
+              if (err)
+                return connection.rollback(() =>
+                  res.status(500).json({ error: err })
+                );
+
+              connection.commit((err) => {
+                if (err)
+                  return connection.rollback(() =>
+                    res.status(500).json({ error: err })
+                  );
+
+                res.sendStatus(200);
+              });
+            }
+          );
+        }
+      );
+    });
+  }
+);
+
 module.exports = router;
