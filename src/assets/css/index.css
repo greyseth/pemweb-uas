@@ -1,5 +1,75 @@
+:root {
+  --primary-color: #f29f58;
+  --secondary-color: #ab4459;
+  --tertiary-color: #441752;
+  --contrast-color: #1b1833;
+}
+
 * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+
+  font-family: sans-serif;
+  color: white;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+button:hover,
+select:hover,
+.clickable:hover {
+  cursor: pointer;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px var(--primary-color);
+  padding: 0.5em;
+  font-size: 1em;
+  transition: 0.5s;
+}
+.btn.full {
+  width: 100%;
+}
+.btn.primary {
+  background-color: var(--primary-color);
+}
+.btn.secondary {
+  background-color: var(--secondary-color);
+}
+.btn.tertiary {
+  background-color: var(--tertiary-color);
+}
+.btn.red {
+  background-color: red;
+}
+.btn.green {
+  background-color: darkgreen;
+}
+.btn:hover {
+  background-color: var(--contrast-color);
+  color: var(--primary-color);
+}
+.btn.primary:hover {
+  background-color: var(--contrast-color);
+  color: var(--primary-color);
+}
+.btn.secondary:hover {
+  background-color: var(--contrast-color);
+  color: var(--primary-color);
+}
+.btn.tertiary:hover {
+  background-color: var(--contrast-color);
+  color: var(--primary-color);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+.btn:disabled:hover {
+  cursor: default;
 }
