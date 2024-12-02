@@ -1,7 +1,6 @@
 const express = require("express");
 const requireParams = require("../middlewares/requireParams");
 const connection = require("../util/db");
-const { comparePassword, encryptPassword } = require("../util/encrypt");
 const generateToken = require("../util/generateToken");
 const requireRoles = require("../middlewares/requireRoles");
 const router = express.Router();
