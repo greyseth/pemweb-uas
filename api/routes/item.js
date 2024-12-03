@@ -41,7 +41,7 @@ router.get("/", (req, res) => {
   connection.query(
     `
       SELECT barang.*, barang_kategori.nama_kategori FROM barang
-      LEFT JOIN barang_kategori ON barang_kategori.id_barang = barang.id_barang;
+      LEFT JOIN barang_kategori ON barang_kategori.id_barang_kategori = barang.id_barang_kategori;
     `,
     (err, rows, fields) => {
       if (err) return res.status(500).json({ error: err });
