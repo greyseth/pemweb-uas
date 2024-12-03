@@ -1,5 +1,6 @@
 const connection = require("../util/db");
 
+// Middleware untuk mengecek role user
 function requireRoles(roles) {
   return (req, res, next) => {
     connection.query(

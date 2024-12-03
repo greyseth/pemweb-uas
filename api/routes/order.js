@@ -4,6 +4,7 @@ const requireRoles = require("../middlewares/requireRoles");
 const connection = require("../util/db");
 const router = express.Router();
 
+// Pembuatan pemesanan (penjualan/pembelian)
 router.post(
   "/",
   requireRoles(["kasir"]),
@@ -16,6 +17,7 @@ router.post(
       if (err)
         return connection.rollback(() => res.status(500).json({ error: err }));
 
+      // Tambahkan data tabel pembelian/penjualan
       connection.query(
         `INSERT INTO ${req.body.order_type} (tanggal, id_${
           req.body.order_type === "pembelian" ? "supplier" : "customer"
@@ -29,7 +31,7 @@ router.post(
 
           const id_order = rows.insertId;
 
-          console.log(req.body.barang);
+          // Tambahkan data ke detail pembelian/penjualan
           const barangs = req.body.barang.map((b) => {
             return [id_order, b.id_barang, b.qty];
           });
@@ -58,6 +60,7 @@ router.post(
   }
 );
 
+// Ambil data dan tambah customer
 router.get("/customer", (req, res) => {
   connection.query(`SELECT * FROM customer;`, (err, rows, fields) => {
     if (err) return res.status(500).json({ error: err });
@@ -80,6 +83,7 @@ router.post(
   }
 );
 
+// Ambil data dan tamah supplier
 router.get("/supplier", (req, res) => {
   connection.query(`SELECT * FROM supplier;`, (err, rows, fields) => {
     if (err) return res.status(500).json({ error: err });
@@ -102,6 +106,7 @@ router.post(
   }
 );
 
+// Semua pesanan dalam satu jenis
 router.get(
   "/:order_type",
   requireRoles(["kasir", "supervisor"]),
@@ -127,6 +132,7 @@ router.get(
   }
 );
 
+// Detail salah satu pesanan
 router.get(
   "/:order_type/:id_order",
   requireRoles(["kasir", "supervisor"]),

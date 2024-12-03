@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+// Middleware untuk autentikasi token JWT untuk setiap aksi
 const authenticateToken = (req, res, next) => {
   if (req.path.includes("/login")) return next();
 

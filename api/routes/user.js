@@ -6,6 +6,7 @@ const requireRoles = require("../middlewares/requireRoles");
 const router = express.Router();
 
 router.post("/login", requireParams(["username", "password"]), (req, res) => {
+  // Select user dengan username dan password
   connection.query(
     `
       SELECT user.id_user, akses_user.role FROM user
@@ -18,6 +19,7 @@ router.post("/login", requireParams(["username", "password"]), (req, res) => {
       if (err) return res.status(500).json({ error: err });
       if (rows.length < 1) return res.status(200).json({ success: false });
 
+      // Mengembalikan token JWT
       res.status(200).json({
         success: true,
         data: {
@@ -35,10 +37,12 @@ router.post(
   requireParams(["username", "password", "role"]),
   requireRoles(["admin"]),
   (req, res) => {
+    // Menggunakan transaction karena lebih dari 1 operasi insert
     connection.beginTransaction((err) => {
       if (err)
         return connection.rollback(() => res.status(500).json({ error: err }));
 
+      // Menambahkan user baru
       connection.query(
         `INSERT INTO user(username, password) VALUES(?, ?)`,
         [req.body.username, req.body.password],
@@ -48,6 +52,7 @@ router.post(
               res.status(500).json({ error: err })
             );
 
+          // Menambahkan ke tabel akses user
           const id_user = rows.insertId;
           connection.query(
             `INSERT INTO akses_user(id_user, role) VALUES(?, ?)`,
@@ -74,6 +79,7 @@ router.post(
   }
 );
 
+// Mengambil data sendiri (untuk header)
 router.get("/self", (req, res) => {
   connection.query(
     `
@@ -91,6 +97,7 @@ router.get("/self", (req, res) => {
   );
 });
 
+// Data semua user
 router.get("/all", requireRoles(["admin"]), (req, res) => {
   connection.query(
     `
@@ -103,6 +110,7 @@ router.get("/all", requireRoles(["admin"]), (req, res) => {
   );
 });
 
+// Update data user
 router.put(
   "/:id_user",
   requireRoles(["admin"]),

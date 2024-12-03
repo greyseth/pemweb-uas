@@ -1,11 +1,10 @@
 const express = require("express");
-const fs = require("fs");
 const requireParams = require("../middlewares/requireParams");
 const requireRoles = require("../middlewares/requireRoles");
 const connection = require("../util/db");
-const requireParamsAfter = require("../middlewares/requireParamsAfter");
 const router = express.Router();
 
+// Tambah data barang
 router.post(
   "/",
   requireParams([
@@ -37,6 +36,7 @@ router.post(
   }
 );
 
+// Ambil semua kategori barang (untuk dropdown)
 router.get("/categories", (req, res) => {
   connection.query(`SELECT * FROM barang_kategori;`, (err, rows, fields) => {
     if (err) return res.status(500).json({ error: err });
@@ -44,6 +44,7 @@ router.get("/categories", (req, res) => {
   });
 });
 
+// Edit data barang
 router.put(
   "/:id_barang",
   requireParams([
@@ -77,6 +78,7 @@ router.put(
   }
 );
 
+// Hapus barang
 router.delete("/:id_barang", requireRoles(["admin"]), (req, res) => {
   connection.query(
     `DELETE FROM barang WHERE id_barang = ?`,

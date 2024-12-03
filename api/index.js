@@ -1,19 +1,20 @@
-const path = require("path");
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const authenticateToken = require("./middlewares/authenticateToken");
 const verifyRole = require("./middlewares/verifyRole");
 
+// Inisialisasi environment variables
 require("dotenv").config();
 
+// Inisialisasi Express
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 
-// Function before any authentication process
+// Endpoint dijalankan sebelum middleware autentikasi
 app.get("/item", (req, res) => {
   connection.query(
     `
@@ -32,6 +33,7 @@ app.use(verifyRole);
 
 app.get("/", (req, res) => res.sendStatus(200));
 
+// Definisi route API
 const userRouter = require("./routes/user");
 const itemRouter = require("./routes/item");
 const orderRouter = require("./routes/order");
@@ -40,4 +42,5 @@ app.use("/user", userRouter);
 app.use("/item", itemRouter);
 app.use("/order", orderRouter);
 
+// Menjalankan di port 3000
 app.listen(3000, () => console.log("Pemweb API is running"));

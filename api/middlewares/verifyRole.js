@@ -1,5 +1,6 @@
 const connection = require("../util/db");
 
+// Middleware untuk verifikasi role
 const verifyRole = (req, res, next) => {
   if (req.path.includes("/login")) return next();
 
