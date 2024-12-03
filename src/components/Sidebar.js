@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { LoginContext } from "../providers/LoginProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
+// Sidebar aplikasi
 export default function Sidebar() {
   const { login, setLogin } = useContext(LoginContext);
   const location = useLocation();

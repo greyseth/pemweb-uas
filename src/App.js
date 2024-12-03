@@ -10,6 +10,7 @@ function App() {
     <section className="app-container">
       <LoginChecker />
 
+      {/* Layout utama aplikasi */}
       <Sidebar />
       <div className="app-content-container">
         <Header />

@@ -4,6 +4,7 @@ import { WarningContext } from "../../providers/WarningProvider";
 import GlobalLoading from "./global_Loading";
 import GlobalWarning from "./global_Warning";
 
+// Komponen untuk menampung popup global
 export default function GlobalContainer() {
   const { loading, setLoading } = useContext(LoadingContext);
   const { warning, setWarning } = useContext(WarningContext);

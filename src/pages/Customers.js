@@ -10,6 +10,7 @@ import { WarningContext } from "../providers/WarningProvider";
 import { verifyInput } from "../util/verifyInput";
 import { LoginContext } from "../providers/LoginProvider";
 
+// Halaman melihat data customer
 export default function Page_Customers() {
   const { login, setLogin } = useContext(LoginContext);
 

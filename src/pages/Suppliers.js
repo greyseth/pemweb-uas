@@ -10,6 +10,7 @@ import { WarningContext } from "../providers/WarningProvider";
 import { verifyInput } from "../util/verifyInput";
 import { LoginContext } from "../providers/LoginProvider";
 
+// Halaman melihat data supplier (salinan dari Customers.js)
 export default function Page_Supplier() {
   const { login, setLogin } = useContext(LoginContext);
 

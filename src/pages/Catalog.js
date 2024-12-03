@@ -11,6 +11,7 @@ import { LoadingContext } from "../providers/LoadingProvider";
 import { WarningContext } from "../providers/WarningProvider";
 import { verifyInput } from "../util/verifyInput";
 
+// Halaman katalog
 export default function Page_Catalog() {
   const { login, setLogin } = useContext(LoginContext);
 
@@ -26,6 +27,7 @@ export default function Page_Catalog() {
     setItemsLoading({ loading: true, error: false });
 
     const response = await request("GET", "/item");
+    console.log(response);
     if (response.error) return setItemsLoading({ loading: true, error: true });
 
     setItems(response);

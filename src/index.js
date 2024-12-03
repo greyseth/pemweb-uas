@@ -15,6 +15,7 @@ import Page_Customers from "./pages/Customers";
 import Page_Supplier from "./pages/Suppliers";
 import Page_Users from "./pages/Users";
 
+// Definisi route aplikasi
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  // Penambahan provider dan root aplikasi
   <React.StrictMode>
     <LoginProvider>
       <WarningProvider>

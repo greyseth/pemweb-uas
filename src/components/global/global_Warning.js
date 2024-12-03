@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { WarningContext } from "../../providers/WarningProvider";
 
+// Popup bersifat global untuk peringatan ke user
 export default function GlobalWarning({
   headerMessage,
   message,

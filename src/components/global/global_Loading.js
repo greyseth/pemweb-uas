@@ -9,6 +9,7 @@ import {
 import { useContext } from "react";
 import { LoadingContext } from "../../providers/LoadingProvider";
 
+// Popup bersifat global untuk proses loading
 export default function GlobalLoading({ error, complete, customButtons }) {
   return (
     <PopupContainer zIndex={999}>

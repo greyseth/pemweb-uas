@@ -7,6 +7,7 @@ import { faPerson, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { WarningContext } from "../providers/WarningProvider";
 import { useNavigate } from "react-router-dom";
 
+// Header aplikasi
 export default function Header() {
   const { login, setLogin } = useContext(LoginContext);
   const { warning, setWarning } = useContext(WarningContext);

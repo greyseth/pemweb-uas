@@ -1,5 +1,6 @@
 import "../assets/css/components/footer.css";
 
+// Footer untuk HAKI
 export default function Footer() {
   return (
     <div className="footer">

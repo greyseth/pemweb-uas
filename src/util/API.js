@@ -1,12 +1,18 @@
+// Utility untuk memudahkan pembuatan request ke API
+
 export default async function request(method, endpoint, body) {
   const requestOptions = {
     method: method,
     headers: {
-      authorization: `Bearer ${window.localStorage.getItem("auth_token")}`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
   };
+
+  if (window.localStorage.getItem("auth_token"))
+    requestOptions.headers.authorization = `Bearer ${window.localStorage.getItem(
+      "auth_token"
+    )}`;
 
   if (method !== "GET") requestOptions.body = JSON.stringify(body);
 

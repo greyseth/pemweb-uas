@@ -10,6 +10,7 @@ import { WarningContext } from "../providers/WarningProvider";
 import { verifyInput } from "../util/verifyInput";
 import { LoginContext } from "../providers/LoginProvider";
 
+// Halaman untuk melihat data user aplikasi (salinan dari Customers.js)
 export default function Page_Users() {
   const { login, setLogin } = useContext(LoginContext);
 

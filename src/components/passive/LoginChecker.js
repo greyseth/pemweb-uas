@@ -4,6 +4,7 @@ import { LoadingContext } from "../../providers/LoadingProvider";
 import request from "../../util/API";
 import { useNavigate } from "react-router-dom";
 
+// Mengecek storage untuk data login dan memverifikasi
 export default function LoginChecker() {
   const { login, setLogin } = useContext(LoginContext);
   const { loading, setLoading } = useContext(LoadingContext);
