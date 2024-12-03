@@ -74,6 +74,23 @@ router.post(
   }
 );
 
+router.get("/self", (req, res) => {
+  connection.query(
+    `
+      SELECT user.username, akses_user.role 
+      FROM user 
+      LEFT JOIN akses_user ON akses_user.id_user = user.id_user
+      WHERE user.id_user = ? AND akses_user.role = ?
+      LIMIT 1;
+    `,
+    [req.id_user, req.role],
+    (err, rows, fields) => {
+      if (err) return res.status(500).json({ error: err });
+      res.status(200).json(rows[0]);
+    }
+  );
+});
+
 router.get("/all", requireRoles(["admin"]), (req, res) => {
   connection.query(
     `
