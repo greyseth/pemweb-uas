@@ -58,19 +58,49 @@ router.post(
   }
 );
 
-router.get("/customer", requireRoles(["kasir"]), (req, res) => {
+router.get("/customer", (req, res) => {
   connection.query(`SELECT * FROM customer;`, (err, rows, fields) => {
     if (err) return res.status(500).json({ error: err });
     res.status(200).json(rows);
   });
 });
+router.post(
+  "/customer",
+  requireRoles(["admin"]),
+  requireParams(["nama_customer", "alamat", "telepon"]),
+  (req, res) => {
+    connection.query(
+      `INSERT INTO customer(nama_customer, alamat, telepon) VALUES(?, ?, ?)`,
+      [req.body.nama_customer, req.body.alamat, req.body.telepon],
+      (err, rows, fields) => {
+        if (err) return res.status(500).json({ error: err });
+        res.sendStatus(200);
+      }
+    );
+  }
+);
 
-router.get("/supplier", requireRoles(["kasir"]), (req, res) => {
+router.get("/supplier", (req, res) => {
   connection.query(`SELECT * FROM supplier;`, (err, rows, fields) => {
     if (err) return res.status(500).json({ error: err });
     res.status(200).json(rows);
   });
 });
+router.post(
+  "/supplier",
+  requireRoles(["admin"]),
+  requireParams(["nama_supplier", "alamat", "telepon"]),
+  (req, res) => {
+    connection.query(
+      `INSERT INTO supplier(nama_supplier, alamat, telepon) VALUES(?, ?, ?)`,
+      [req.body.nama_supplier, req.body.alamat, req.body.telepon],
+      (err, rows, fields) => {
+        if (err) return res.status(500).json({ error: err });
+        res.sendStatus(200);
+      }
+    );
+  }
+);
 
 router.get(
   "/:order_type",
