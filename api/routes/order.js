@@ -58,6 +58,20 @@ router.post(
   }
 );
 
+router.get("/customer", requireRoles(["kasir"]), (req, res) => {
+  connection.query(`SELECT * FROM customer;`, (err, rows, fields) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(200).json(rows);
+  });
+});
+
+router.get("/supplier", requireRoles(["kasir"]), (req, res) => {
+  connection.query(`SELECT * FROM supplier;`, (err, rows, fields) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(200).json(rows);
+  });
+});
+
 router.get(
   "/:order_type",
   requireRoles(["kasir", "supervisor"]),
