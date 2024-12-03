@@ -14,7 +14,7 @@ app.use(helmet());
 app.use(cors());
 
 // Function before any authentication process
-app.get("/", (req, res) => {
+app.get("/item", (req, res) => {
   connection.query(
     `
       SELECT barang.*, barang_kategori.nama_kategori FROM barang
