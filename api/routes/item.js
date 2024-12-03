@@ -37,6 +37,13 @@ router.post(
   }
 );
 
+router.get("/categories", (req, res) => {
+  connection.query(`SELECT * FROM barang_kategori;`, (err, rows, fields) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(200).json(rows);
+  });
+});
+
 router.get("/", (req, res) => {
   connection.query(
     `
