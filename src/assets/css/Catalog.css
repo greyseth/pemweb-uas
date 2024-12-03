@@ -1,0 +1,42 @@
+.catalog-container * {
+  color: var(--contrast-color);
+}
+
+.catalog-container > .catalog-header {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catalog-list {
+  width: 100%;
+  list-style: none;
+}
+.catalog-list * {
+  color: white;
+}
+.catalog-list li {
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  padding: 1em;
+  margin-bottom: 1em;
+}
+.catalog-list li div:first-child {
+  border-bottom: 2px solid white;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+}
+.catalog-list li div:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.catalog-container .popup-panel * {
+  color: white;
+}
+.catalog-container .popup-panel .form input {
+  color: black;
+}

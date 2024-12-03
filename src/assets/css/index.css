@@ -24,6 +24,32 @@ select:hover,
   cursor: pointer;
 }
 
+input[type|="text"],
+input[type|="number"],
+input[type|="password"],
+select,
+textarea {
+  padding: 0.5em;
+  color: black;
+}
+input[type|="text"]:focus,
+input[type|="number"]:focus,
+input[type|="password"]:focus {
+  outline: none;
+}
+
+.loading-error {
+  width: 100%;
+}
+.loading-error > * {
+  text-align: center;
+  display: block;
+  margin: 0px auto;
+}
+.loading-error > h2 {
+  margin-bottom: 1em;
+}
+
 .btn {
   border: none;
   border-radius: 5px;
@@ -72,4 +98,38 @@ select:hover,
 }
 .btn:disabled:hover {
   cursor: default;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+.styled-table th {
+  background-color: var(--tertiary-color);
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid var(--contrast-color);
+  background-color: var(--secondary-color);
+  transition: 0.5s;
+}
+.styled-table tbody tr:hover {
+  background-color: var(--tertiary-color);
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--contrast-color);
+}
+
+.form option,
+.form select {
+  color: black;
 }

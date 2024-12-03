@@ -3,10 +3,10 @@ import { createContext, useState } from "react";
 export const WarningContext = createContext();
 
 function WarningProvider({ children }) {
-  const [Warning, setWarning] = useState(undefined);
+  const [warning, setWarning] = useState(undefined);
 
   return (
-    <WarningContext.Provider value={{ Warning, setWarning }}>
+    <WarningContext.Provider value={{ warning, setWarning }}>
       {children}
     </WarningContext.Provider>
   );

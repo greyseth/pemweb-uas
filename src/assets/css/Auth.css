@@ -1,0 +1,13 @@
+.auth-container {
+  padding: 2em;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-container > .popup-panel {
+  width: 100%;
+  max-width: 400px;
+}

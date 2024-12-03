@@ -1,16 +1,24 @@
+import { Outlet } from "react-router-dom";
 import "./assets/css/App.css";
-
-import { faCity } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PopupContainer from "./components/PopupContainer";
-import GlobalLoading from "./assets/css/components/global_Loading";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import LoginChecker from "./components/passive/LoginChecker";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
-      <p>Hello, World</p>
-      <GlobalLoading error={false} complete={true} />
-    </>
+    <section className="app-container">
+      <LoginChecker />
+
+      <Sidebar />
+      <div className="app-content-container">
+        <Header />
+        <div className="app-content">
+          <Outlet />
+        </div>
+        <Footer />
+      </div>
+    </section>
   );
 }
 

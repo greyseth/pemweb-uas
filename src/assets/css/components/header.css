@@ -1,0 +1,12 @@
+.app-header {
+  width: 100%;
+  padding: 0.5em;
+  background-color: var(--tertiary-color);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5em;
+}
+.app-header * {
+  font-weight: bold;
+}

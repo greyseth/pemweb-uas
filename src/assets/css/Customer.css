@@ -1,0 +1,13 @@
+.customers-container > .customers-header {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.customers-header * {
+  color: var(--contrast-color);
+}
+
+.customers-container > .styled-table {
+  width: 100%;
+}

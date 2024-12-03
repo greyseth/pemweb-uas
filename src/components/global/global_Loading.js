@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LoadingSpinner from "../../../components/LoadingSpinner";
-import PopupContainer from "../../../components/PopupContainer";
+import LoadingSpinner from "../LoadingSpinner";
+import PopupContainer from "../PopupContainer";
 import {
   faCheckCircle,
   faClose,
   faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { LoadingContext } from "../../providers/LoadingProvider";
 
 export default function GlobalLoading({ error, complete, customButtons }) {
   return (
@@ -36,11 +38,18 @@ function Loading() {
 }
 
 function Error() {
+  const { loading, setLoading } = useContext(LoadingContext);
+
   return (
     <>
       <div className="header">
         <p>Proses Gagal</p>
-        <FontAwesomeIcon icon={faClose} color="white" className="clickable" />
+        <FontAwesomeIcon
+          icon={faClose}
+          color="white"
+          className="clickable"
+          onClick={() => setLoading(undefined)}
+        />
       </div>
       <FontAwesomeIcon
         icon={faExclamationCircle}
@@ -57,11 +66,18 @@ function Error() {
 }
 
 function Complete({ customButtons }) {
+  const { loading, setLoading } = useContext(LoadingContext);
+
   return (
     <>
       <div className="header">
         <p>Proses Berhasil</p>
-        <FontAwesomeIcon icon={faClose} color="white" className="clickable" />
+        <FontAwesomeIcon
+          icon={faClose}
+          color="white"
+          className="clickable"
+          onClick={() => setLoading(undefined)}
+        />
       </div>
       <FontAwesomeIcon
         icon={faCheckCircle}
@@ -76,7 +92,13 @@ function Complete({ customButtons }) {
       {customButtons && customButtons.length > 0
         ? customButtons.map((button, i) => {
             return (
-              <button className="btn primary" onClick={button.action}>
+              <button
+                className="btn primary"
+                onClick={() => {
+                  button.action();
+                  setLoading(undefined);
+                }}
+              >
                 {button.label}
               </button>
             );
