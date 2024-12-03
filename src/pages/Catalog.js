@@ -53,7 +53,7 @@ export default function Page_Catalog() {
 
       <div className="catalog-header">
         <h2>Katalog Barang ATK</h2>
-        {login & (login.role === "admin") ? (
+        {login && login.role === "admin" ? (
           <button className="btn secondary" onClick={() => setAddItem(true)}>
             <FontAwesomeIcon
               icon={faAdd}
