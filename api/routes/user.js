@@ -23,6 +23,7 @@ router.post("/login", requireParams(["username", "password"]), (req, res) => {
         data: {
           auth_token: generateToken(rows[0].id_user, rows[0].role),
           username: req.body.username,
+          role: rows[0].role,
         },
       });
     }
